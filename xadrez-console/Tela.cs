@@ -6,7 +6,7 @@ namespace xadrez_console
     internal class Tela
     {
 
-        public static void ImprimeTela(Tabuleiro tab)
+        public static void ImprimirTabuleiro(Tabuleiro tab)
         {
 
             int i, j = 0;
@@ -18,7 +18,7 @@ namespace xadrez_console
                 {
                     if (tab.Pecas[i, j] == null)
                     {
-                        Console.Write(" -");
+                        Console.Write("- ");
                     }
 
 

@@ -11,9 +11,9 @@ namespace TabuleiroXadrez
         public int QteMovimentos { get; protected set; }
         public Tabuleiro TabPeca { get; protected set; }
 
-        public Peca(Posicao posPeca, Cor corPeca, Tabuleiro tabPeca)
+        public Peca(Cor corPeca, Tabuleiro tabPeca)
         {
-            PosPeca = posPeca;
+            PosPeca = null;
             CorPeca = corPeca;
             TabPeca = tabPeca;
             QteMovimentos = 0;

@@ -1,5 +1,6 @@
 ﻿using System;
 using TabuleiroXadrez;
+using JogoXadrez;
 
 
 namespace xadrez_console
@@ -12,7 +13,10 @@ namespace xadrez_console
            
             Tabuleiro tab = new Tabuleiro(8,8);
 
-            Tela.ImprimeTela(tab);
+            tab.ColocarPeca(new Rei(Cor.Preta, tab), new Posicao(0, 3));
+            
+
+            Tela.ImprimirTabuleiro(tab);
             
 
         }
