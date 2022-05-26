@@ -24,6 +24,11 @@ namespace TabuleiroXadrez
             p.PosPeca= pos;
         }
 
+        public Peca peca(Posicao pos)
+        {
+            return Pecas[pos.Linha, pos.Coluna];
+        }
+
 
 
     }
