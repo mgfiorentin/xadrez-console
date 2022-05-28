@@ -4,7 +4,7 @@ using System.Text;
 
 namespace TabuleiroXadrez
 {
-    internal class Peca
+    internal abstract class Peca
     {
         public Posicao PosicaoDaPeca { get; set; }
         public Cor CorPeca { get; protected set; }
@@ -18,6 +18,8 @@ namespace TabuleiroXadrez
             TabPeca = tabPeca;
             QteMovimentos = 0;
         }
+
+        public abstract bool[,] MovimentosPossiveis();
 
         public void IncrementaQteMovt()
         {

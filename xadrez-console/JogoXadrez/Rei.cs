@@ -11,6 +11,13 @@ namespace JogoXadrez
             
         }
 
+        public override bool[,] MovimentosPossiveis()
+        {
+            bool[,] mat = new bool[TabPeca.Linhas, TabPeca.Colunas];
+
+            return mat
+        }
+
         public override string ToString()
         {
             return "R";
