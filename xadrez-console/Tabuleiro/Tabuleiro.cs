@@ -62,6 +62,7 @@ namespace TabuleiroXadrez
         //Retorna a Peca na Posicao pos 
         public Peca peca(Posicao pos)
         {
+            ValidarPosicao(pos);
             return Pecas[pos.Linha, pos.Coluna];
         }
 

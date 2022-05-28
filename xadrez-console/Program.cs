@@ -15,7 +15,7 @@ namespace xadrez_console
                 Tabuleiro tab = new Tabuleiro(8, 8);
 
 
-                tab.ColocarPeca(new Rei(Cor.Preta, tab), new Posicao(0, 4));
+                tab.ColocarPeca(new Rei(Cor.Preta, tab), new Posicao(0, 1));
                 tab.ColocarPeca(new Torre(Cor.Preta, tab), new Posicao(0, 5));
 
                 Tela.ImprimirTabuleiro(tab);
