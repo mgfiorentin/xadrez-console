@@ -18,5 +18,10 @@ namespace TabuleiroXadrez
             TabPeca = tabPeca;
             QteMovimentos = 0;
         }
+
+        public void IncrementaQteMovt()
+        {
+            QteMovimentos++;
+        }
     }
 }

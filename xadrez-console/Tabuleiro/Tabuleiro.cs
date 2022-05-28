@@ -31,6 +31,19 @@ namespace TabuleiroXadrez
             p.PosicaoDaPeca = pos;
         }
 
+        public Peca RetirarPeca(Posicao pos)
+        {
+            if (GetPeca(pos) == null)
+            {
+                return null;
+            }
+            Peca aux = GetPeca(pos);
+            aux.PosicaoDaPeca = null;
+            Pecas[pos.Linha, pos.Coluna] = null;
+            return aux;
+
+        }
+
         //Verifica a validade da Posicao pos dependendo do Tabuleiro instanciado
         public bool PosicaoValida(Posicao pos)
         {
@@ -55,12 +68,12 @@ namespace TabuleiroXadrez
         public bool existePeca(Posicao pos)
         {
             ValidarPosicao(pos);
-            return (peca(pos) != null);
+            return (GetPeca(pos) != null);
 
         }
 
         //Retorna a Peca na Posicao pos 
-        public Peca peca(Posicao pos)
+        public Peca GetPeca(Posicao pos)
         {
             ValidarPosicao(pos);
             return Pecas[pos.Linha, pos.Coluna];

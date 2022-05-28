@@ -1,11 +1,12 @@
 ﻿using TabuleiroXadrez;
 using System;
+using JogoXadrez;
 
 namespace xadrez_console
 {
     internal class Tela
     {
-
+        //Percorre todo o tabuleiro imprimindo cada peça
         public static void ImprimirTabuleiro(Tabuleiro tab)
         {
 
@@ -23,7 +24,7 @@ namespace xadrez_console
                         Console.Write("- ");
                     }
 
-                    else ImprimirPeca(tab.peca(new Posicao(i,j)));
+                    else ImprimirPeca(tab.GetPeca(new Posicao(i,j)));
                     
 
                 }
@@ -36,6 +37,15 @@ namespace xadrez_console
 
         }
 
+        public static PosicaoXadrez LerPosicaoXadrez()
+        {
+            string s = Console.ReadLine();
+            char coluna = s[0];
+            int linha = int.Parse(s[1]+"");
+            return new PosicaoXadrez(coluna, linha);
+        }
+
+        //Imprime a Peca p com a cor designada
         public static void ImprimirPeca(Peca p)
         {
             if (p.CorPeca == Cor.Branca)

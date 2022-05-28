@@ -11,21 +11,25 @@ namespace xadrez_console
         static void Main(string[] args)
         {
             try
-            {
-                Tabuleiro tab = new Tabuleiro(8, 8);
+            {              
+                PartidaXadrez partida = new PartidaXadrez();
+                
+               
+                while(!partida.isMatchOver)
+                {
+                    Console.Clear();
+                    Tela.ImprimirTabuleiro(partida.Tab);
 
+                    Console.Write("Informe a peça a ser movimentada: ");
+                    Posicao origem = Tela.LerPosicaoXadrez().toPosicao();
 
-                tab.ColocarPeca(new Rei(Cor.Preta, tab), new Posicao(0, 1));
-                tab.ColocarPeca(new Torre(Cor.Preta, tab), new Posicao(0, 5));
+                    Console.Write("Destino: ");
+                    Posicao destino = Tela.LerPosicaoXadrez().toPosicao();
 
-                Tela.ImprimirTabuleiro(tab);
+                    partida.ExecutarMovimento(origem, destino);
 
+                }
 
-                Console.WriteLine();
-
-                PosicaoXadrez pos = new PosicaoXadrez('b', 4);
-                Console.WriteLine(pos);
-                Console.WriteLine(pos.toPosicao());
             }
 
 

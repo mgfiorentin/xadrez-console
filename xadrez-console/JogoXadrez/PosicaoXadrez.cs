@@ -14,6 +14,7 @@ namespace JogoXadrez
         {
             Coluna = coluna;
             Linha = linha;
+
         }
 
         public Posicao toPosicao()
