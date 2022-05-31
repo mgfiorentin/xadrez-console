@@ -19,8 +19,24 @@ namespace TabuleiroXadrez
             QteMovimentos = 0;
         }
 
+        public bool PodeMoverPara(Posicao destino)
+        {
+            return MovimentosPossiveis()[destino.Linha, destino.Coluna];
+        }
         public abstract bool[,] MovimentosPossiveis();
 
+        public bool ExisteMvtPossiveis()
+        {
+            bool[,] mat = MovimentosPossiveis();
+            for(int i= 0; i < TabPeca.Linhas; i++)
+            {
+                for (int j=0; j< TabPeca.Colunas; j++)
+                {
+                    if (mat[i,j]) return true;
+                }
+            }
+            return false;
+        }
         public void IncrementaQteMovt()
         {
             QteMovimentos++;
