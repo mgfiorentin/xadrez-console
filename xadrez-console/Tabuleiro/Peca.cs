@@ -41,5 +41,10 @@ namespace TabuleiroXadrez
         {
             QteMovimentos++;
         }
+
+        public void DecrementaQteMovt()
+        {
+            QteMovimentos--;
+        }
     }
 }

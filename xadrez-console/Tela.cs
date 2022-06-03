@@ -3,7 +3,7 @@ using System;
 using JogoXadrez;
 using System.Collections.Generic;
 
-namespace xadrez_console
+namespace XadrezConsole
 {
     internal class Tela
     {
@@ -15,6 +15,10 @@ namespace xadrez_console
             ImprimirPecasCapturadas(partida);
             Console.WriteLine("Turno: " + partida.Turno.ToString());
             Console.WriteLine("Aguardando jogada: " + partida.JogadorAtual);
+            if (partida.Xeque)
+            {
+                Console.WriteLine("XEQUE!");
+            }
             Console.Write("\nInforme a peça a ser movimentada: ");
         }
 

@@ -3,7 +3,7 @@ using TabuleiroXadrez;
 using JogoXadrez;
 
 
-namespace xadrez_console
+namespace XadrezConsole
 {
 
     internal class Program
