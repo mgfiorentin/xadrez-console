@@ -16,6 +16,7 @@ namespace JogoXadrez
         private HashSet<Peca> Pecas;
         private HashSet<Peca> PecasCapturadas;
         public bool Xeque { get; private set; }
+        private bool ChecandoXeque;
 
         public PartidaXadrez()
         {
@@ -26,7 +27,7 @@ namespace JogoXadrez
             Pecas = new HashSet<Peca>();
             PecasCapturadas = new HashSet<Peca>();
             IniciarPecas();
-            Xeque = false; 
+            Xeque = false;
 
         }
 
@@ -39,7 +40,7 @@ namespace JogoXadrez
             {
                 if (p.CorPeca == cor) aux.Add(p);
             }
-                        return aux;
+            return aux;
         }
 
         //Método para retornar apenas peças em jogo
@@ -78,7 +79,7 @@ namespace JogoXadrez
         public void DesfazerMovimento(Posicao origem, Posicao destino, Peca pCapturada)
         {
             Peca p = Tab.RetirarPeca(destino);
-            
+
             p.DecrementaQteMovt();
 
             if (pCapturada != null)
@@ -97,7 +98,7 @@ namespace JogoXadrez
             if (EstaEmXeque(JogadorAtual))
             {
                 DesfazerMovimento(origem, destino, pCapturada);
-                throw new TabuleiroException("XEQUE!");
+                throw new TabuleiroException("Você está em xeque!");
             }
             if (EstaEmXeque(CorAdversaria(JogadorAtual)))
             {
@@ -105,11 +106,19 @@ namespace JogoXadrez
             }
             else Xeque = false;
 
-            Turno++;
-            mudaJogador();
+            if (TesteXequeMate(CorAdversaria(JogadorAtual)))
+            {
+                isMatchOver = true;
+            }
+            else {
+                Turno++;
+                mudaJogador();
+            }
+
+
         }
 
-        
+
 
         public void ValidarPosicaoOrigem(Posicao origem)
         {
@@ -156,12 +165,42 @@ namespace JogoXadrez
             Peca rei = GetRei(cor);
             if (rei == null) throw new TabuleiroException("Não existe rei da cor " + cor);
 
-            foreach (Peca p in GetPecasEmJogo(CorAdversaria(cor))) {
+            foreach (Peca p in GetPecasEmJogo(CorAdversaria(cor)))
+            {
                 bool[,] mat = p.MovimentosPossiveis();
                 if (mat[rei.PosicaoDaPeca.Linha, rei.PosicaoDaPeca.Coluna])
                     return true;
             }
             return false;
+        }
+
+        public bool TesteXequeMate(Cor cor)
+        {
+            if (!EstaEmXeque(cor)) return false;
+            foreach (Peca p in GetPecasEmJogo(cor))
+            {
+                bool[,] mat = p.MovimentosPossiveis();
+                for (int i = 0; i < Tab.Linhas; i++)
+                {
+                    for (int j = 0; j < Tab.Colunas; j++)
+                    {
+                        if (mat[i, j])
+                        {
+                            Posicao origem = p.PosicaoDaPeca;
+                            Posicao destino = new Posicao(i, j);
+                            Peca pecaCapturada = ExecutarMovimento(origem, destino);
+                            bool testeXeque = EstaEmXeque(cor);
+                            DesfazerMovimento(origem, destino, pecaCapturada);
+
+                            if (!testeXeque) return false;
+                        }
+                    }
+                }
+
+            }
+
+            return true;
+
         }
 
         private void mudaJogador()
@@ -183,10 +222,11 @@ namespace JogoXadrez
         public void IniciarPecas()
         {
             ColocarNovaPeca('c', 1, new Torre(Cor.Branca, Tab));
-            ColocarNovaPeca('c', 2, new Rei(Cor.Branca, Tab));
-            ColocarNovaPeca('c', 3, new Torre(Cor.Branca, Tab));
-            ColocarNovaPeca('h', 3, new Torre(Cor.Preta, Tab));
-            ColocarNovaPeca('h', 2, new Rei(Cor.Preta, Tab));
+            ColocarNovaPeca('h', 7, new Torre(Cor.Branca, Tab));
+            ColocarNovaPeca('d', 1, new Rei(Cor.Branca, Tab));
+
+            ColocarNovaPeca('a',8, new Rei(Cor.Preta, Tab));
+            ColocarNovaPeca('b', 8, new Torre(Cor.Preta, Tab));
         }
 
     }
