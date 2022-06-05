@@ -19,7 +19,7 @@ namespace TabuleiroXadrez
             QteMovimentos = 0;
         }
 
-        public bool PodeMoverPara(Posicao destino)
+        public bool MovimentoPossivel(Posicao destino)
         {
             return MovimentosPossiveis()[destino.Linha, destino.Coluna];
         }
